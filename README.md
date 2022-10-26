@@ -82,6 +82,6 @@ for(i in 1:nrow(mat)){
 }
 
 # Plotting a heatmap 
-Heatmap(t(mat), col = colorRamp2(c(-2,0,2), c("orangered", "white", "purple")))
+Heatmap(t(mat), col = colorRamp2(c(-2,0,2), c("red", "white", "purple")))
 ![SSGSEA_heatmap](https://user-images.githubusercontent.com/110582335/197962860-970a5775-8c1c-48db-baa3-069870b284a7.png)
 
