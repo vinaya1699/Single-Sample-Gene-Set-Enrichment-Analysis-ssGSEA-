@@ -9,8 +9,7 @@ ssgsea = function(X, gene_sets, alpha = 0.25, scale = T, norm = F, single = T) {
     row_names = rownames(X)
     num_genes = nrow(X)
     gene_sets = lapply(gene_sets, function(genes) {which(row_names %in% genes)})
-
-    #Ranks for genes
+        #Ranks for genes
     R = matrixStats::colRanks(X, preserveShape = T, ties.method = 'average')
 
     #Calculate enrichment score (es) for each sample (column)
