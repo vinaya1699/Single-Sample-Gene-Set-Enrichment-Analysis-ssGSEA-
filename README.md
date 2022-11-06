@@ -109,5 +109,5 @@ heatmap(t(mat))
 ![heatmap](https://user-images.githubusercontent.com/110582335/200167764-accd4d71-8b07-4737-9d03-7343f3e0c2e7.png)
 
 # Interpretation :
-Above Heatmap contain cancer data samples and genes sets where it represents colour representation based on specific genes present in respective samples .
+Above Heatmap contain cancer data samples and genes sets where,colour representation is based on specific genes present in respective samples .
 
