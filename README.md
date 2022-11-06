@@ -115,5 +115,8 @@ heatmap(t(mat))
 ![heatmap](https://user-images.githubusercontent.com/110582335/200167764-accd4d71-8b07-4737-9d03-7343f3e0c2e7.png)
 
 # Interpretation :
-Above Heatmap contain cancer data samples and genes sets where,colour representation is based on specific genes present in respective samples .
+Above Heatmap contain genes sets vs cancer data samples.
 
+The varying intensity of color represents the measure of correlation between gene sets and cancer data samples.
+
+Tha darker shaded columns represent down regulated genes whereas lighter shaded columns represent up regulated genes .
