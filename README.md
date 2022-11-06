@@ -117,4 +117,4 @@ Above Heatmap contain genes sets vs cancer data samples.
 
 The varying intensity of color represents the measure of correlation between gene sets and cancer data samples.
 
-The darker shaded columns represent down regulated genes whereas lighter shaded columns represent up regulated genes whereas white box/colum represent unchanges expression of genes.
+The darker shaded columns represent down regulated genes whereas lighter shaded columns represent up regulated genes whereas white box/colum represent unchanged expression of genes.
