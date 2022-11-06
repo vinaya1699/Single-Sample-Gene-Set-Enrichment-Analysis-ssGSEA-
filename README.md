@@ -27,6 +27,8 @@ View(gene_set)
 
 gene_sets= as.list(as.data.frame(gene_set))
 
+print("genes set ready")
+
 # Creating a function to perform an analysis .
 ssgsea = function(X, gene_sets, alpha = 0.25, scale = T, norm = F, single = T) {
     row_names = rownames(X)
@@ -84,13 +86,6 @@ data2=as.matrix(data1)
 
 data2[1:5,1:5]
 ![image](https://user-images.githubusercontent.com/110582335/200167591-5108d9d5-7582-4772-b240-71058a82e8f8.png)
-
-# Provide an ideal marker's gene data
-gene_set = read.csv("markers2Sep.csv")
-
-head(gene_set)
-
-print("genes set ready")
 
 # Assigning a created function to data 
 res= ssgsea(data, gene_sets, scale = TRUE, norm = FALSE)
