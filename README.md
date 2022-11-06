@@ -29,6 +29,9 @@ gene_sets= as.list(as.data.frame(gene_set))
 
 print("genes set ready")
 
+head(gene_sets)
+![image](https://user-images.githubusercontent.com/110582335/200167591-5108d9d5-7582-4772-b240-71058a82e8f8.png)
+
 # Creating a function to perform an analysis .
 ssgsea = function(X, gene_sets, alpha = 0.25, scale = T, norm = F, single = T) {
     row_names = rownames(X)
@@ -85,10 +88,9 @@ data1= readRDS("gene_log.rds")
 data2=as.matrix(data1)
 
 data2[1:5,1:5]
-![image](https://user-images.githubusercontent.com/110582335/200167591-5108d9d5-7582-4772-b240-71058a82e8f8.png)
 
 # Assigning a created function to data 
-res= ssgsea(data, gene_sets, scale = TRUE, norm = FALSE)
+res= ssgsea(data2, gene_sets, scale = TRUE, norm = FALSE)
 
 res1 = t(res)
 
