@@ -115,6 +115,7 @@ heatmap(t(mat))
 ![heatmap](https://user-images.githubusercontent.com/110582335/200167764-accd4d71-8b07-4737-9d03-7343f3e0c2e7.png)
 
 # Interpretation :
+#M3652 and M38668 : Genesets used for analysis
 Above Heatmap contain genes sets vs cancer data samples.
 
 The varying intensity of color represents the measure of correlation between gene sets and cancer data samples.
