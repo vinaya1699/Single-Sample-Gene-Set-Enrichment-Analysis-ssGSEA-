@@ -1,8 +1,31 @@
 # Single-Sample-Gene-Set-Enrichment-Analysis-ssGSEA-
 # List of used libraries in ssGSEA :-
 library(matrixStats)
+
 library(circlize)
+
 library(ComplexHeatmap)
+
+# Creating a gene set for analysis
+
+data_files <- list.files("C:/Users/91973/Desktop/New folder", full.names= T)  
+
+data_files 
+
+gene_set= matrix(NA,ncol= length(data_files),nrow= 9)
+
+for(i in 1:length(data_files)) {                              
+  
+  df= read.csv(data_files[i])
+  
+  gene_set[,i]= df[1:9, 1]
+  
+}
+colnames(gene_set) <- c('M3652','M38668','p53')   #M3652 and M38668 : Genesets used for analysis
+
+View(gene_set)
+
+gene_sets= as.list(as.data.frame(gene_set))
 
 # Creating a function to perform an analysis .
 ssgsea = function(X, gene_sets, alpha = 0.25, scale = T, norm = F, single = T) {
@@ -55,56 +78,24 @@ ssgsea = function(X, gene_sets, alpha = 0.25, scale = T, norm = F, single = T) {
 }
 
 # Reading a log data created in normalization method
-data = readRDS("gene_log.rds")
-data[1:5,1:5]
-
-#output  :-
-HT1080_FUS.DDIT3.EGFP_ruxo_p1 HT1080_FUS.DDIT3.EGFP_ruxo_p2 HT1080_FUS.DDIT3.EGFP_ruxo_p3
-TSPAN6                        6.348730                      5.225328                      5.844280
-TNMD                          0.000000                      0.000000                      0.000000
-DPM1                          7.637741                      5.767928                      7.260560
-SCYL3                         2.971615                      2.952795                      2.933835
-C1orf112                      5.502201                      4.633630                      4.827602
-         HT1080_FUS.DDIT3.EGFP_ruxo_p4 HT1080_FUS.DDIT3.EGFP_p1
-TSPAN6                        6.655400                 5.474237
-TNMD                          0.000000                 0.000000
-DPM1                          7.890874                 7.585082
-SCYL3                         2.746343                 3.512331
-C1orf112                      5.294000                 4.694626
-
-# Converting a data into matrix form 
-data = as.matrix(data)
+data1= readRDS("gene_log.rds")
+data2=as.matrix(data1)
+data2[1:5,1:5]
+![image](https://user-images.githubusercontent.com/110582335/200167591-5108d9d5-7582-4772-b240-71058a82e8f8.png)
 
 # Provide an ideal marker's gene data
 gene_set = read.csv("markers2Sep.csv")
 head(gene_set)
 
-#output :- 
-     Art1  Art2   Art3 AstroAQP1 AstroPLCG1 AstroSERPINI2 B.cell Bcell_plasma capEndo    CD4    CD8 CD8_6_1_3       DC
-1  HEXIM1 ARL15   DKK2      GFAP       GPC5        ADGRV1   CD37         MZB1   CLDN5 CD40LG   CD8A      GZMA     AREG
-2     ID2 MCTP1  LTBP4       TNC      HPSE2         DPP10  CD79A       JCHAIN   IFI27   CD69   CD8B      GZMK     CD74
-3    IER3 MECOM    MGP  ADAMTSL3       RORA          TNIK  MS4A1         XBP1   ABCG2   CD3E   XCL1     LIME1   FCER1A
-4  LRRC23 PLCB4  RAMP2      AQP1     SLC1A2       PPP2R2B RPL18A        DERL3     VWF  CXCR4 PTGER2     DUSP2   FCGR2B
-5  TM4SF1 VEGFC    ELN       DST   ARHGAP24         WDR49   RPS5      HERPUD1           IL7R ZNF683     CRTAM    GRASP
-6 C6orf62  ROR1 ABI3BP       TTN     CACNB2         ZNRF3   FCMR        FCRL5           IL32  KLRC4     KLRG1 HLA-DRB5
-
-gene_sets = as.list(as.data.frame(gene_set))
 print("genes set ready")
 
 # Assigning a created function to data 
 res= ssgsea(data, gene_sets, scale = TRUE, norm = FALSE)
+
 res1 = t(res)
+
 head(res1)
-
-#output :- 
-
-                                   Art1      Art2      Art3 AstroAQP1 AstroPLCG1 AstroSERPINI2    B.cell Bcell_plasma
-HT1080_FUS.DDIT3.EGFP_ruxo_p1 0.3054631 0.2586226 0.1705326 0.2065896  0.1910912     0.2350131 0.2291777    0.2621320
-HT1080_FUS.DDIT3.EGFP_ruxo_p2 0.3011720 0.2149711 0.1629913 0.2004283  0.1979145     0.2343365 0.2418092    0.2790913
-HT1080_FUS.DDIT3.EGFP_ruxo_p3 0.3024787 0.2187553 0.1520157 0.2038492  0.1859622     0.2296506 0.2406960    0.2745030
-HT1080_FUS.DDIT3.EGFP_ruxo_p4 0.3080101 0.2479575 0.1591382 0.2095333  0.1917020     0.2387244 0.2261381    0.2645014
-HT1080_FUS.DDIT3.EGFP_p1      0.3136549 0.2588294 0.1601708 0.1839985  0.2120165     0.2475338 0.2395430    0.2616747
-HT1080_FUS.DDIT3.EGFP_p2      0.3100692 0.2029241 0.1748144 0.1945879  0.2098940     0.2439454 0.2496574    0.2607195
+![image](https://user-images.githubusercontent.com/110582335/200167697-3a415970-9729-45c1-b316-4d4c0d0c2ad5.png)
 
 mat=as.matrix(res1)
 
@@ -114,6 +105,9 @@ for(i in 1:nrow(mat)){
 }
 
 # Plotting a heatmap 
-Heatmap(t(mat), col = colorRamp2(c(-2,0,2), c("red", "white", "purple")))
-![SSGSEA_heatmap](https://user-images.githubusercontent.com/110582335/197962860-970a5775-8c1c-48db-baa3-069870b284a7.png)
+heatmap(t(mat))
+![heatmap](https://user-images.githubusercontent.com/110582335/200167764-accd4d71-8b07-4737-9d03-7343f3e0c2e7.png)
+
+# Interpretation :
+Above Heatmap contain cancer data samples and genes sets where it represents colour representation based on specific genes present in respective samples .
 
